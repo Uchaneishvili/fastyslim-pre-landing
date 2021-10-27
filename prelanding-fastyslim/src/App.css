@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+section {
+  position: absolute;
+  right: 0;
+  width: 100%;
+  min-height: 100vh;
+  padding: 100px;
+  display: block;
+  background: #111;
+  transition: 0.5s;
+}
+
+.banner {
+  position: relative;
+}
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo {
+  color: #fff;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background: url("https://icon-library.com/images/hamburger-menu-icon-png-white/hamburger-menu-icon-png-white-10.jpg");
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-position: center;
+  cursor: pointer;
+}
+
+section video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: soft-light;
+}
+
+.text-and-logo-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.text {
+  position: relative;
+  z-index: 10;
+}
+
+.logo {
+  width: 26vw;
+  z-index: 10;
+}
+
+.text h2 {
+  font-size: 6em;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.text h3 {
+  font-size: 4em;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.text p {
+  position: relative;
+  font-size: 1.1em;
+  margin: 20px 0;
+  font-weight: 400;
+  max-width: 700px;
+  color: #fff;
+}
+
+.text a {
+  display: inline-block;
+  font-size: 1.1em;
+  background: #fff;
+  padding: 10px 30px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 500;
+  margin-top: 10px;
+  color: #111;
+  letter-spacing: 2px;
+}
+
+.sci {
+  position: absolute;
+  z-index: 10;
+  bottom: 20px;
+  display: flex;
+  margin-left: 1.5%;
+  justify-content: center;
+  align-items: center;
+}
+
+.sci li {
+  list-style: none;
+}
+.sci li a {
+  display: inline-block;
+  margin-right: 20px;
+  filter: invert(1);
+  transform: scale(0.5);
+}
+
+@media (max-width: 991px) {
+  section,
+  section header {
+    padding: 40px;
+  }
+
+  .logo {
+    width: 100%;
+  }
+  .text h2 {
+    font-size: 3em;
+  }
+
+  .sci {
+    display: none;
+  }
+}
