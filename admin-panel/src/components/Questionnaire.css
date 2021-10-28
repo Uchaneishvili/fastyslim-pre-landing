@@ -1,0 +1,22 @@
+.page-title {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.search-input {
+  width: 30%;
+}
+
+.create-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.search-and-add-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+}
