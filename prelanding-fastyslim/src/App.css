@@ -145,6 +145,11 @@ section video {
   transform: scale(0.5);
 }
 
+.blur-background {
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
+
 @media (max-width: 991px) {
   section,
   section header {
@@ -160,5 +165,10 @@ section video {
 
   .sci {
     display: none;
+  }
+
+  .app {
+    top: 40vh;
+    width: 100%;
   }
 }
