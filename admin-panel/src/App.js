@@ -1,25 +1,13 @@
-import logo from "./logo.svg";
 import "./App.css";
 
 import React from "react";
-// import "./AdminUI.css";
-// import Homelist from "../Homelist/Homelist";
 
 import { Layout, Menu } from "antd";
-import {
-  AppstoreOutlined,
-  BarChartOutlined,
-  CloudOutlined,
-  ShopOutlined,
-  TeamOutlined,
-  UserOutlined,
-  UploadOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
 import Questionnaire from "./components/Questionnaire";
 
 function App() {
-  const { Header, Content, Footer, Sider } = Layout;
+  const { Content, Footer, Sider } = Layout;
 
   return (
     <div>
@@ -34,6 +22,7 @@ function App() {
         >
           <div className="logo">
             <img
+              alt="fastyslim"
               src="https://fastyslim.de/wp-content/uploads/2020/12/fastyslim-logo.png"
               className="fastyslim-logo"
             />

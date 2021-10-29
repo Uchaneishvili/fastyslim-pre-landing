@@ -7,7 +7,7 @@ import {
   PlusOutlined,
 } from "@ant-design/icons";
 import Axios from "axios";
-import { Table, Input, Button } from "antd";
+import { Table, Button } from "antd";
 import "./Questionnaire.css";
 import CreateModal from "./Modal/CreateModal";
 
@@ -15,7 +15,6 @@ function Questionnaire() {
   const [questionList, setQuestionList] = useState();
   const [isOpen, setIsOpen] = useState(false);
   const [questionEdit, setQuestionEdit] = useState();
-  const { Search } = Input;
   const { Header } = Layout;
 
   const columns = [
@@ -91,6 +90,7 @@ function Questionnaire() {
   const handleTableChange = () => {
     loadData();
   };
+
   return (
     <div>
       <div className="breadcrumbs-container">

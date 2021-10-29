@@ -1,17 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  PageHeader,
-  Layout,
-  Modal,
-  Button,
-  Form,
-  InputNumber,
-  Row,
-  Col,
-  Input,
-  DatePicker,
-  Tabs,
-} from "antd";
+import { Modal, Form, InputNumber, Col, Input } from "antd";
 import Axios from "axios";
 
 function CreateModal(props) {
@@ -46,6 +34,7 @@ function CreateModal(props) {
     }
 
     props.setIsOpen(false);
+    props.loadData();
   };
 
   useEffect(() => {
@@ -122,10 +111,7 @@ function CreateModal(props) {
                 },
               ]}
             >
-              <Input
-                onChange={(event) => questionFunction(event)}
-                defaultValue=""
-              />
+              <Input onChange={(event) => questionFunction(event)} />
             </Form.Item>
           </Col>
           <Col>
