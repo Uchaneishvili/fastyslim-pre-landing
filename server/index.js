@@ -51,23 +51,12 @@ app.get("/read", async (req, res) => {
   try {
     const querySearch = {};
 
-    let query = QuestionModel.find(querySearch);
+    let query = QuestionModel.find(querySearch).sort({ priority: 1 });
 
-    const page = parseInt(req.query.page) || 1;
-    const pageSize = parseInt(req.query.pageSize) || 10;
-    const skip = (page - 1) * pageSize;
-    const total = await QuestionModel.countDocuments(querySearch);
-
-    const pages = Math.ceil(total / pageSize);
-
-    query = query.skip(skip).limit(pageSize);
     const result = await query;
 
     res.status(200).json({
       status: "Success",
-      count: result.length,
-      page,
-      pages,
       data: result,
     });
   } catch (error) {
@@ -98,6 +87,8 @@ app.get("/read", async (req, res) => {
  *             properties:
  *               question:
  *                 type: string
+ *               priority:
+ *                 type: int
  *               optionOne:
  *                 type: string
  *               optionTwo:
@@ -112,7 +103,8 @@ app.get("/read", async (req, res) => {
  */
 app.post("/insert", async (req, res) => {
   //Create
-  const { question, optionOne, optionTwo, optionThree, optionFour } = req.body;
+  const { question, optionOne, optionTwo, optionThree, optionFour, priority } =
+    req.body;
 
   const questionData = new QuestionModel({
     question: question,
@@ -120,6 +112,7 @@ app.post("/insert", async (req, res) => {
     optionTwo: optionTwo,
     optionThree: optionThree,
     optionFour: optionFour,
+    priority: priority,
   });
 
   try {
@@ -164,6 +157,8 @@ app.post("/insert", async (req, res) => {
  *             properties:
  *               question:
  *                 type: string
+ *               priority:
+ *                 type: int
  *               optionOne:
  *                 type: string
  *               optionTwo:
@@ -181,7 +176,15 @@ app.put("/update", async (req, res) => {
   const data = req.body;
 
   try {
-    QuestionModel.findByIdAndUpdate(_id, data);
+    const updatedQuestion = await QuestionModel.findByIdAndUpdate(
+      _id,
+      {
+        $set: data,
+      },
+      {
+        new: true,
+      }
+    );
 
     res.status(200).json({
       status: "Success",

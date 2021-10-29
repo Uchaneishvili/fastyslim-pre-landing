@@ -20,6 +20,10 @@ const QuestionSchema = new mongoose.Schema(
     optionFour: {
       type: String,
     },
+    priority: {
+      type: Number,
+      required: true,
+    },
   },
   {
     timestamps: true,
