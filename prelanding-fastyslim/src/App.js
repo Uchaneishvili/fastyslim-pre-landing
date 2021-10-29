@@ -1,53 +1,25 @@
+import React, { useState } from "react";
 import "./App.css";
 import ModalPage from "./components/ModalPage";
-import MotivationText from "./components/MotivationText";
+import Axios from "axios";
 
 function App() {
-  const questions = [
-    {
-      questionText: "What is the capital of France?",
-      answerOptions: [
-        { answerText: "New York", isCorrect: false },
-        { answerText: "London", isCorrect: false },
-        { answerText: "Paris", isCorrect: true },
-        { answerText: "Dublin", isCorrect: false },
-      ],
-    },
-    {
-      questionText: "Who is CEO of Tesla?",
-      answerOptions: [
-        { answerText: "Jeff Bezos", isCorrect: false },
-        { answerText: "Elon Musk", isCorrect: true },
-        { answerText: "Bill Gates", isCorrect: false },
-        { answerText: "Tony Stark", isCorrect: false },
-      ],
-    },
-    {
-      questionText: "The iPhone was created by which company?",
-      answerOptions: [
-        { answerText: "Apple", isCorrect: true },
-        { answerText: "Intel", isCorrect: false },
-        { answerText: "Amazon", isCorrect: false },
-        { answerText: "Microsoft", isCorrect: false },
-      ],
-    },
-    {
-      questionText: "How many Harry Potter books are there?",
-      answerOptions: [
-        { answerText: "1", isCorrect: false },
-        { answerText: "4", isCorrect: false },
-        { answerText: "6", isCorrect: false },
-        { answerText: "7", isCorrect: true },
-      ],
-    },
-  ];
+  let [questions, setQuestions] = useState([{}]);
+  const [isOpen, setIsOpen] = useState(true);
 
+  const loadData = async () => {
+    let url = `http://localhost:3001/read`;
+
+    await Axios.get(url).then((response) => {
+      setQuestions(response.data.data);
+    });
+  };
   return (
     <>
       <section className="banner">
         <div className="overlay">
           <video
-            className={questions ? "blur-background" : ""}
+            className={isOpen ? "blur-background" : ""}
             src="pexels-karolina-grabowska-5726626.mp4"
             muted
             loop
@@ -55,7 +27,7 @@ function App() {
           ></video>
         </div>
         <div className="text-and-logo-container">
-          <div className={questions ? "text blur-background" : "text"}>
+          <div className={isOpen ? "text blur-background" : "text"}>
             <h2>Lose Weight</h2>
             <h3>Like Crazy</h3>
             <p>
@@ -67,11 +39,16 @@ function App() {
 
             <a href="https://fastyslim.de/">Find Out More</a>
           </div>
-          <ModalPage questions={questions} />
+          <ModalPage
+            questions={questions}
+            loadData={loadData}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+          />
 
           <div
             className={
-              questions ? "logo-container blur-background" : "logo-container"
+              isOpen ? "logo-container blur-background" : "logo-container"
             }
           >
             <img
@@ -81,7 +58,7 @@ function App() {
           </div>
         </div>
 
-        <ul className={questions ? "sci blur-background" : "sci"}>
+        <ul className={isOpen ? "sci blur-background" : "sci"}>
           <li>
             <a href="#">
               <img src="facebook.png" />

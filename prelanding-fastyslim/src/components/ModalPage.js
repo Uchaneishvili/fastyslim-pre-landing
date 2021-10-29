@@ -1,21 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Modal from "react-modal";
-import Axios from "axios";
 import "./ModalPage.css";
 
 function ModalPage(props) {
   let [currentQuestion, setCurrentQuestion] = useState(0);
-  let [questions, setQuestions] = useState([{}]);
-  const [isOpen, setIsOpen] = useState(true);
   let options = [{}];
-
-  const loadData = async () => {
-    let url = `http://localhost:3001/read`;
-
-    await Axios.get(url).then((response) => {
-      setQuestions(response.data.data);
-    });
-  };
 
   const generateOptions = (currentQuestion) => {
     for (let x = 1; x <= 4; x++) {
@@ -23,28 +11,28 @@ function ModalPage(props) {
         case 1:
           options.push({
             key: x,
-            value: questions[currentQuestion].optionOne,
+            value: props.questions[currentQuestion].optionOne,
           });
           break;
 
         case 2:
           options.push({
             key: x,
-            value: questions[currentQuestion].optionTwo,
+            value: props.questions[currentQuestion].optionTwo,
           });
           break;
 
         case 3:
           options.push({
             key: x,
-            value: questions[currentQuestion].optionThree,
+            value: props.questions[currentQuestion].optionThree,
           });
           break;
 
         case 4:
           options.push({
             key: x,
-            value: questions[currentQuestion].optionFour,
+            value: props.questions[currentQuestion].optionFour,
           });
           break;
 
@@ -71,7 +59,7 @@ function ModalPage(props) {
   };
 
   useEffect(() => {
-    loadData();
+    props.loadData();
   }, []);
 
   const handleAnswerOptionClick = () => {
@@ -79,21 +67,22 @@ function ModalPage(props) {
     if (nextQuestion < props.questions.length) {
       setCurrentQuestion(nextQuestion);
     } else {
-      setIsOpen(false);
+      props.setIsOpen(false);
     }
   };
 
   return (
     <>
-      {isOpen && (
+      {props.isOpen && (
         <div className="app">
           <>
             <div className="question-section">
               <div className="question-count">
-                <span>Question {currentQuestion + 1}</span>/{questions.length}
+                <span>Question {currentQuestion + 1}</span>/
+                {props.questions.length}
               </div>
               <div className="question-text">
-                {questions && questions[currentQuestion].question}
+                {props.questions && props.questions[currentQuestion].question}
               </div>
             </div>
           </>
