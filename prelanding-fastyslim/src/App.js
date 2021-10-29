@@ -52,6 +52,7 @@ function App() {
             }
           >
             <img
+              alt="fastyslim"
               className="logo"
               src="https://fastyslim.de/wp-content/uploads/2020/12/fastyslim-blister.png"
             />
@@ -60,18 +61,18 @@ function App() {
 
         <ul className={isOpen ? "sci blur-background" : "sci"}>
           <li>
-            <a href="#">
-              <img src="facebook.png" />
+            <a href="https://facebook.com/">
+              <img src="facebook.png" alt="facebook" />
             </a>
           </li>
           <li>
-            <a href="#">
-              <img src="twitter.png" />
+            <a href="https://twitter.com/">
+              <img src="twitter.png" alt="twitter" />
             </a>
           </li>
           <li>
-            <a href="#">
-              <img src="instagram.png" />
+            <a href="https://instagram.com/">
+              <img src="instagram.png" alt="instagram" />
             </a>
           </li>
         </ul>

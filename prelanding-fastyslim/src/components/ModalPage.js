@@ -44,7 +44,7 @@ function ModalPage(props) {
     return (
       <>
         {options.splice(1, 4).map((answerOption) => (
-          <>
+          <div key={answerOption.key}>
             {answerOption.value && (
               <button
                 onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}
@@ -52,7 +52,7 @@ function ModalPage(props) {
                 {answerOption.value}
               </button>
             )}
-          </>
+          </div>
         ))}
       </>
     );
@@ -60,7 +60,7 @@ function ModalPage(props) {
 
   useEffect(() => {
     props.loadData();
-  }, []);
+  }, [props]);
 
   const handleAnswerOptionClick = () => {
     const nextQuestion = currentQuestion + 1;
